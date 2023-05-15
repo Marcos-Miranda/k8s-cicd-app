@@ -9,7 +9,10 @@ steps:
         pip install poetry && \
         poetry export -f requirements.txt --output requirements.txt --without-hashes --with=dev && \
         pip install --no-cache-dir -r requirements.txt && \
-        make lint-test
+        black app/ tests/ && \
+        flake8 app/ tests/ && \
+        mypy app/ tests/ && \
+        pytest
 
   # Build the container image
   - name: 'gcr.io/cloud-builders/docker'
