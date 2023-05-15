@@ -24,4 +24,4 @@ spec:
             limits:
               memory: 2Gi
               cpu: 500m
-        serviceAccountName: {{ .Values.serviceAccount}}
+      serviceAccountName: {{ .Values.serviceAccount}}
