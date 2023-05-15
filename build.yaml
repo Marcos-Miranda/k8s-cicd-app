@@ -1,10 +1,11 @@
 steps:
+
   # Run the linters and unit tests
-  - name: 'python:3.10-slim'
+  - name: python:3.10-slim
     id: Lint-Test
     entrypoint: /bin/sh
     args:
-      - '-c'
+      - -c
       - |
         pip install poetry && \
         poetry export -f requirements.txt --output requirements.txt --without-hashes --with=dev && \
@@ -15,13 +16,13 @@ steps:
         pytest
 
   # Build the container image
-  - name: 'gcr.io/cloud-builders/docker'
+  - name: gcr.io/cloud-builders/docker
     id: Build
     args:
-    - 'build'
-    - '-t'
-    - 'us-central1-docker.pkg.dev/$PROJECT_ID/gcp-img-rep/ct-api:$COMMIT_SHA'
-    - '.'
+    - build
+    - -t
+    - us-central1-docker.pkg.dev/$PROJECT_ID/gcp-img-rep/ct-api:$COMMIT_SHA
+    - .
 
 images:
-  - 'us-central1-docker.pkg.dev/$PROJECT_ID/gcp-img-rep/ct-api:$COMMIT_SHA'
+  - us-central1-docker.pkg.dev/$PROJECT_ID/gcp-img-rep/ct-api:$COMMIT_SHA
