@@ -1,0 +1,7 @@
+container:
+  name: ct-api
+  port: 8080
+  image: us-central1-docker.pkg.dev/modified-cairn-386403/gcp-img-rep/deploy-test
+  tag: v1
+replicas: 1
+serviceAccount: firestore-sa

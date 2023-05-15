@@ -1,0 +1,4 @@
+name: civ-turn-k8s
+sources:
+- https://github.com/Marcos-Miranda/k8s-cicd-app
+version: 1.0.0
