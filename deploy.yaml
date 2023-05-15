@@ -1,0 +1,19 @@
+steps:
+
+  # Deploy the helm chart
+  - name: 'gcr.io/$PROJECT_ID/helm'
+    id: Deploy
+    env: 
+      - 'CLOUDSDK_COMPUTE_REGION=us-central1'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=gcp-cluster'
+    args:
+      - upgrade
+      - --install
+      - --values
+      - k8s/values.yaml
+      - --set
+      - container.image=us-central1-docker.pkg.dev/$PROJECT_ID/gcp-img-rep/ct-api
+      - --set
+      - container.tag=${COMMIT_SHA}
+      - civ-turn-k8s
+      - ./k8s
